@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Today I Will...</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      width: 100%;
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: rgba(0, 0, 0, 0.7); /* 70% black */
+      border-radius: 15px;
+      width: 80%;
+      padding: 3vh 5vw; /* give breathing space top/bottom */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+    }
+
+    .content-box {
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 4vw;
+      color: #ffffff;
+      margin: 0;
+    }
+
+    .dots {
+      color: #ffffff;
+      font-weight: 500;
+      margin-left: 0.3em;
+    }
+
+    .statement {
+      font-size: 3vw;
+      color: #ffffff;
+      margin-top: 1.5vh;
+      margin-bottom: 1.5vh;
+    }
+
+    .countdown {
+      font-size: 2vw;
+      color: #ffaa00;
+    }
+
+    .countdown span {
+      color: #ffffff;
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 6vw; }
+      .statement { font-size: 4.5vw; }
+      .countdown { font-size: 3.5vw; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="content-box">
+      <h1>Today I Will<span class="dots">...</span></h1>
+      <div class="statement" id="statement"></div>
+      <div class="countdown" id="countdown"></div>
+    </div>
+  </div>
+
+  <script>
+    const statements = [
+      "Take powerful steps toward my wealth",
+      "Speak only words that uplift and expand me",
+      "Trust the flow of abundance around me",
+      "Show up with courage and certainty",
+      "Let go of fear and open to receiving",
+      "Radiate magnetic energy with every breath",
+      "Make aligned decisions without hesitation",
+      "See proof of my manifestations everywhere",
+      "Act like the millionaire I already am",
+      "Celebrate the blessings already on the way"
+    ];
+
+    const statementEl = document.getElementById("statement");
+    const countdownEl = document.getElementById("countdown");
+    let currentIndex = 0;
+    let countdown = 25;
+
+    function updateStatement() {
+      statementEl.textContent = statements[currentIndex];
+      currentIndex = (currentIndex + 1) % statements.length;
+      countdown = 25;
+    }
+
+    function updateCountdown() {
+      countdownEl.innerHTML = `Next in <span>${countdown}s</span>`;
+      countdown--;
+      if (countdown < 0) {
+        updateStatement();
+      }
+    }
+
+    // Initial setup
+    updateStatement();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
